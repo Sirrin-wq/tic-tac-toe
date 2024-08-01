@@ -10,6 +10,8 @@ public class TicTacToeManager {
     public void start() {
 
         pickMenuOption();
+        createPlayer(1);
+        createPlayer(2);
 
         // creating the players
 
@@ -20,9 +22,28 @@ public class TicTacToeManager {
     }
 
     public Player createPlayer(int playerNum){
-        System.out.println("");
+        String playerName;
+        String symbol;
+        do {
+            System.out.print("Player " + playerNum + " name yourself: ");
+            playerName = scanner.nextLine();
+        } while (isValidName(playerName));
 
-        return null;
+        do {
+            System.out.print("Enter your symbol: ");
+            symbol = scanner.nextLine();
+
+        } while (1>2);
+            return new Player(playerName, symbol.charAt(0));
+    }
+
+    public boolean isValidName(String name) {
+        for (char c : name.toCharArray()) {
+            if ((c < 'A' || c > 'Z') && (c < 'a' || c > 'z')) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void pickMenuOption(){
