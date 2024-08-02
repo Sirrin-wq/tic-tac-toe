@@ -38,6 +38,7 @@ public class TicTacToeManager {
         return new Player(playerName, symbol.charAt(0));
     }
 
+    // Checks that characters are A-Z or a-z
     public boolean isEnglishAlphabet(String name) {
         for (char c : name.toCharArray()) {
             if ((c < 'A' || c > 'Z') && (c < 'a' || c > 'z')) {
@@ -87,5 +88,57 @@ public class TicTacToeManager {
         }
     }
 
+    public void makeMove() {
+        int intRow;
+        String strRow;
+        int intColumn;
+        String strColumn;
+        do {
+            do {
+                System.out.print("Enter the row number: ");
+                strRow = scanner.nextLine();
+                if (isSingleDigit(strRow)) {
+                    intRow = Integer.parseInt(strRow);
+                    if (isPositiveNumber(intRow)) {
+                        break;
+                    }
+                }
+            } while (true);
 
+            do {
+                System.out.print("Enter the column number: ");
+                strColumn = scanner.nextLine();
+                if (isSingleDigit(strColumn)) {
+                    intColumn = Integer.parseInt(strColumn);
+                    if (isPositiveNumber(intColumn)) {
+                        break;
+                    }
+                }
+            } while (true);
+            if (board[intRow][intColumn] == '.') {
+                board[intRow][intColumn] = playerOne.getSymbol();
+                break;
+            } else {
+                System.out.println("The position is already taken");
+            }
+        } while (true);
+    }
+
+    public boolean isSingleDigit(String input) {
+        if (input.length() == 1 && Character.isDigit(input.charAt(0))) {
+            return true;
+        } else {
+            System.out.println("Input needs to be a single whole digit");
+            return false;
+        }
+    }
+
+    public boolean isPositiveNumber(int num) {
+        if (num >= 0) {
+            return true;
+        } else {
+            System.out.println("Input needs to be a positive number");
+            return false;
+        }
+    }
 }
