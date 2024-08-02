@@ -21,23 +21,24 @@ public class TicTacToeManager {
 
     }
 
-    public Player createPlayer(int playerNum){
+    public Player createPlayer(int playerNum) {
         String playerName;
         String symbol;
         do {
             System.out.print("Player " + playerNum + " name yourself: ");
             playerName = scanner.nextLine();
-        } while (isValidName(playerName));
+        } while (isEnglishAlphabet(playerName));
 
         do {
             System.out.print("Enter your symbol: ");
             symbol = scanner.nextLine();
 
-        } while (1>2);
-            return new Player(playerName, symbol.charAt(0));
+        } while (isEnglishAlphabet(symbol));
+
+        return new Player(playerName, symbol.charAt(0));
     }
 
-    public boolean isValidName(String name) {
+    public boolean isEnglishAlphabet(String name) {
         for (char c : name.toCharArray()) {
             if ((c < 'A' || c > 'Z') && (c < 'a' || c > 'z')) {
                 return false;
@@ -46,7 +47,7 @@ public class TicTacToeManager {
         return true;
     }
 
-    public void pickMenuOption(){
+    public void pickMenuOption() {
         String strInput;
 
         do {
