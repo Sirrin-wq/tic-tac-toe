@@ -11,7 +11,24 @@ public class TicTacToeManager {
 		pickMenuOption();
 		playerOne = createPlayer(1);
 		playerTwo = createPlayer(2);
-
+        
+		//
+		while(true) {
+			if(checkWin(playerOne.getSymbol())) {
+				System.out.println("Player 1 Won");
+				break;
+			}
+			else if(checkWin(playerTwo.getSymbol())){
+				System.out.println("Player 2 Won");
+				break;
+			}
+			else if(checkDraw()){
+				System.out.println("it's a draw");
+				break;
+			}
+		}
+		
+		
 		// creating the players
 
 		// creating the board
@@ -83,7 +100,7 @@ public class TicTacToeManager {
 		}
 	}
 
-	public void makeMove() {
+	public void makeMove(Player player) {
 		int intRow;
 		String strRow;
 		int intColumn;
@@ -111,7 +128,7 @@ public class TicTacToeManager {
 				}
 			} while (true);
 			if (board[intRow][intColumn] == '.') {
-				board[intRow][intColumn] = playerOne.getSymbol();
+				board[intRow][intColumn] = player.getSymbol();
 				break;
 			} else {
 				System.out.println("The position is already taken");
@@ -119,6 +136,7 @@ public class TicTacToeManager {
 		} while (true);
 	}
 
+	
 	public boolean isSingleDigit(String input) {
 		if (input.length() == 1 && Character.isDigit(input.charAt(0))) {
 			return true;
@@ -156,6 +174,17 @@ public class TicTacToeManager {
 		}
 		
 		return false;
+	}
+	
+	public boolean checkDraw() {
+		for(int i=0; i<3; i++) {
+			for(int j=0; j<3; j++) {
+				if(board[i][j]=='.') {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 }
 
