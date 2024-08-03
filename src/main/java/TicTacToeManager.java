@@ -152,6 +152,24 @@ public class TicTacToeManager {
 
 		printBoard();
 	}
+	
+	
+//	public void makeMove(Player player) {
+//		System.out.println(player.getName() + " enter the coordinates you want to move");
+//		String userInput = scanner.nextLine();
+//		String[] coordinates = userInput.split(",");
+//		
+//		int row =Integer.parseInt(coordinates[0].trim())-1;
+//		int column =Integer.parseInt(coordinates[1].trim())-1;
+//		
+//		if (board[row][column] == '.') {
+//			board[row][column] = player.getSymbol();
+//		} else {
+//			System.out.println("The position is already taken");
+//		}
+//		
+//		printBoard();
+//	}
 
 	
 	public boolean isSingleDigit(String input) {
