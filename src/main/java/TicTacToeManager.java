@@ -10,8 +10,8 @@ public class TicTacToeManager {
     public void start() {
 
         pickMenuOption();
-        createPlayer(1);
-        createPlayer(2);
+        playerOne=createPlayer(1);
+        playerTwo=createPlayer(2);
 
         // creating the players
 
@@ -98,7 +98,7 @@ public class TicTacToeManager {
                 System.out.print("Enter the row number: ");
                 strRow = scanner.nextLine();
                 if (isSingleDigit(strRow)) {
-                    intRow = Integer.parseInt(strRow);
+                    intRow = Integer.parseInt(strRow)-1; //user input will be from 1-3 and we'll check from 0-2
                     if (isInBounds(intRow)) {
                         break;
                     }
@@ -109,7 +109,7 @@ public class TicTacToeManager {
                 System.out.print("Enter the column number: ");
                 strColumn = scanner.nextLine();
                 if (isSingleDigit(strColumn)) {
-                    intColumn = Integer.parseInt(strColumn);
+                    intColumn = Integer.parseInt(strColumn)-1; //user input will be from 1-3 and we'll check from 0-2
                     if (isInBounds(intColumn)) {
                         break;
                     }
