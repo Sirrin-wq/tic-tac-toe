@@ -11,17 +11,30 @@ public class TicTacToeManager {
 		pickMenuOption();
 		playerOne = createPlayer(1);
 		playerTwo = createPlayer(2);
-		makeMove(playerOne);
-		makeMove(playerTwo);
-        
+
 		//
 		while(true) {
+			makeMove(playerOne);
 			if(checkWin(playerOne.getSymbol())) {
-				System.out.println("Player 1 Won");
+				System.out.println(playerOne.getName() + " won");
 				break;
 			}
 			else if(checkWin(playerTwo.getSymbol())){
-				System.out.println("Player 2 Won");
+				System.out.println(playerTwo.getName() + " won");
+				break;
+			}
+			else if(checkDraw()){
+				System.out.println("it's a draw");
+				break;
+			}
+
+			makeMove(playerTwo);
+			if(checkWin(playerOne.getSymbol())) {
+				System.out.println(playerOne.getName() + " won");
+				break;
+			}
+			else if(checkWin(playerTwo.getSymbol())){
+				System.out.println(playerTwo.getName() + " won");
 				break;
 			}
 			else if(checkDraw()){
@@ -109,7 +122,7 @@ public class TicTacToeManager {
 		String strColumn;
 		do {
 			do {
-				System.out.print(player.toString() + " enter the row number: ");
+				System.out.print(player.getName() + " enter the row number: ");
 				strRow = scanner.nextLine();
 				if (isSingleDigit(strRow)) {
 					intRow = Integer.parseInt(strRow) - 1; // user input will be from 1-3 and we'll check from 0-2
@@ -120,7 +133,7 @@ public class TicTacToeManager {
 			} while (true);
 
 			do {
-				System.out.print(player.toString() + " enter the column number: ");
+				System.out.print(player.getName() + " enter the column number: ");
 				strColumn = scanner.nextLine();
 				if (isSingleDigit(strColumn)) {
 					intColumn = Integer.parseInt(strColumn) - 1; // user input will be from 1-3 and we'll check from 0-2
@@ -136,6 +149,8 @@ public class TicTacToeManager {
 				System.out.println("The position is already taken");
 			}
 		} while (true);
+
+		printBoard();
 	}
 
 	
