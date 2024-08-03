@@ -3,6 +3,7 @@ public class Main {
         TicTacToeManager ticTacToeManager = new TicTacToeManager();
         ticTacToeManager.createBoard();
         ticTacToeManager.printBoard();
+        ticTacToeManager.start();
     }
 }
 
