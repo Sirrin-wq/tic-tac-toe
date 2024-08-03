@@ -99,7 +99,7 @@ public class TicTacToeManager {
                 strRow = scanner.nextLine();
                 if (isSingleDigit(strRow)) {
                     intRow = Integer.parseInt(strRow);
-                    if (isPositiveNumber(intRow)) {
+                    if (isInBounds(intRow)) {
                         break;
                     }
                 }
@@ -110,7 +110,7 @@ public class TicTacToeManager {
                 strColumn = scanner.nextLine();
                 if (isSingleDigit(strColumn)) {
                     intColumn = Integer.parseInt(strColumn);
-                    if (isPositiveNumber(intColumn)) {
+                    if (isInBounds(intColumn)) {
                         break;
                     }
                 }
@@ -133,8 +133,8 @@ public class TicTacToeManager {
         }
     }
 
-    public boolean isPositiveNumber(int num) {
-        if (num >= 0) {
+    public boolean isInBounds(int num) {
+        if (num >= 0 && num<3) {
             return true;
         } else {
             System.out.println("Input needs to be a positive number");
