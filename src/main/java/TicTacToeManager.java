@@ -11,6 +11,8 @@ public class TicTacToeManager {
 		pickMenuOption();
 		playerOne = createPlayer(1);
 		playerTwo = createPlayer(2);
+		makeMove(playerOne);
+		makeMove(playerTwo);
         
 		//
 		while(true) {
@@ -107,7 +109,7 @@ public class TicTacToeManager {
 		String strColumn;
 		do {
 			do {
-				System.out.print("Enter the row number: ");
+				System.out.print(player.toString() + " enter the row number: ");
 				strRow = scanner.nextLine();
 				if (isSingleDigit(strRow)) {
 					intRow = Integer.parseInt(strRow) - 1; // user input will be from 1-3 and we'll check from 0-2
@@ -118,7 +120,7 @@ public class TicTacToeManager {
 			} while (true);
 
 			do {
-				System.out.print("Enter the column number: ");
+				System.out.print(player.toString() + " enter the column number: ");
 				strColumn = scanner.nextLine();
 				if (isSingleDigit(strColumn)) {
 					intColumn = Integer.parseInt(strColumn) - 1; // user input will be from 1-3 and we'll check from 0-2
@@ -150,7 +152,7 @@ public class TicTacToeManager {
 		if (num >= 0 && num < 3) {
 			return true;
 		} else {
-			System.out.println("Input needs to be a positive number");
+			System.out.println("Input needs to be a number between 1 - 3");
 			return false;
 		}
 	}
