@@ -58,10 +58,10 @@ public class TicTacToeManager {
 	public boolean isEnglishAlphabet(String name) {
 		for (char c : name.toCharArray()) {
 			if ((c < 'A' || c > 'Z') && (c < 'a' || c > 'z')) {
-				return false;
+				return true;
 			}
 		}
-		return true;
+		return false;
 	}
 
 	public void pickMenuOption() {
