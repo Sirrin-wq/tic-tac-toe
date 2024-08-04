@@ -8,15 +8,14 @@ public class TicTacToeManager {
     private Scanner scanner = new Scanner(System.in);
 
     public TicTacToeManager() {
-        createBoard();
-        printBoard();
+        pickMenuOption();
     }
 
     public void start() {
-
-        pickMenuOption();
+        createBoard();
         playerOne = createPlayer(1);
         playerAI = createPlayer(2);
+        printBoard();
 
         //
         while (true) {
