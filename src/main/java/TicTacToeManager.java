@@ -23,19 +23,13 @@ public class TicTacToeManager {
             if (checkWin(playerOne.getSymbol())) {
                 System.out.println(playerOne.getName() + " won");
                 break;
-            } else if (checkWin(playerAI.getSymbol())) {
-                System.out.println(playerAI.getName() + " won");
-                break;
             } else if (checkDraw()) {
                 System.out.println("it's a draw");
                 break;
             }
 
             makeAIMove(playerAI);
-            if (checkWin(playerOne.getSymbol())) {
-                System.out.println(playerOne.getName() + " won");
-                break;
-            } else if (checkWin(playerAI.getSymbol())) {
+            if (checkWin(playerAI.getSymbol())) {
                 System.out.println(playerAI.getName() + " won");
                 break;
             } else if (checkDraw()) {
