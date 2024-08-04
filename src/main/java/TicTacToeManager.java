@@ -198,14 +198,15 @@ public class TicTacToeManager {
     }
 
 
-    public boolean isSingleDigit(String input) {
-        if (input.length() == 1 && Character.isDigit(input.charAt(0))) {
-            return true;
-        } else {
-            System.out.println("Input needs to be a single whole digit");
-            return false;
-        }
-    }
+    // Used when taking user input by row and then column
+//    public boolean isSingleDigit(String input) {
+//        if (input.length() == 1 && Character.isDigit(input.charAt(0))) {
+//            return true;
+//        } else {
+//            System.out.println("Input needs to be a single whole digit");
+//            return false;
+//        }
+//    }
 
     public boolean isInBounds(int num) {
         if (num >= 0 && num < 3) {
