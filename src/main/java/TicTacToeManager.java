@@ -154,16 +154,25 @@ public class TicTacToeManager {
 
     public void makeMove(Player player) {
 
-        int row;
-        int column;
+        int row = 0;
+        int column = 0;
+        boolean isNotComma;
         do {
-            System.out.println(player.getName() + " enter the coordinates you want to move");
-            System.out.println("Coordinates format: 'row,column'");
-            String userInput = scanner.nextLine();
-            String[] coordinates = userInput.split(",");
-            row = Integer.parseInt(coordinates[0].trim()) - 1;
-            column = Integer.parseInt(coordinates[1].trim()) - 1;
-        } while (!isInBounds(row) || !isInBounds(column));
+            try {
+                isNotComma = false;
+                System.out.println(player.getName() + " enter the coordinates you want to move");
+                System.out.println("Coordinates format: 'row,column'");
+                String userInput = scanner.nextLine();
+                String[] coordinates = userInput.split(",");
+                row = Integer.parseInt(coordinates[0].trim()) - 1;
+                column = Integer.parseInt(coordinates[1].trim()) - 1;
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input");
+                isNotComma = true;
+            }
+        } while (!isInBounds(row) || !isInBounds(column) || isNotComma);
+
+
 
 
         if (board[row][column] == '.') {
