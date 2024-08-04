@@ -1,16 +1,17 @@
 import java.util.Scanner;
+import java.util.Random;
 
 public class TicTacToeManager {
 	private char[][] board;
 	private Player playerOne;
-	private Player playerTwo;
+	private Player playerAI;
 	private Scanner scanner = new Scanner(System.in);
 
 	public void start() {
 
 		pickMenuOption();
 		playerOne = createPlayer(1);
-		playerTwo = createPlayer(2);
+		playerAI = createPlayer(2);
 
 		//
 		while(true) {
@@ -19,8 +20,8 @@ public class TicTacToeManager {
 				System.out.println(playerOne.getName() + " won");
 				break;
 			}
-			else if(checkWin(playerTwo.getSymbol())){
-				System.out.println(playerTwo.getName() + " won");
+			else if(checkWin(playerAI.getSymbol())){
+				System.out.println(playerAI.getName() + " won");
 				break;
 			}
 			else if(checkDraw()){
@@ -28,13 +29,13 @@ public class TicTacToeManager {
 				break;
 			}
 
-			makeMove(playerTwo);
+			makeAIMove(playerAI);
 			if(checkWin(playerOne.getSymbol())) {
 				System.out.println(playerOne.getName() + " won");
 				break;
 			}
-			else if(checkWin(playerTwo.getSymbol())){
-				System.out.println(playerTwo.getName() + " won");
+			else if(checkWin(playerAI.getSymbol())){
+				System.out.println(playerAI.getName() + " won");
 				break;
 			}
 			else if(checkDraw()){
@@ -53,6 +54,9 @@ public class TicTacToeManager {
 	}
 
 	public Player createPlayer(int playerNum) {
+		if(playerNum==2) {
+			return new Player("AI",'O'); //AI player with symbol 'O'
+		}
 		String playerName;
 		String symbol;
 		do {
@@ -115,61 +119,77 @@ public class TicTacToeManager {
 		}
 	}
 
+//	public void makeMove(Player player) {
+//		int intRow;
+//		String strRow;
+//		int intColumn;
+//		String strColumn;
+//		do {
+//			do {
+//				System.out.print(player.getName() + " enter the row number: ");
+//				strRow = scanner.nextLine();
+//				if (isSingleDigit(strRow)) {
+//					intRow = Integer.parseInt(strRow) - 1; // user input will be from 1-3 and we'll check from 0-2
+//					if (isInBounds(intRow)) {
+//						break;
+//					}
+//				}
+//			} while (true);
+//
+//			do {
+//				System.out.print(player.getName() + " enter the column number: ");
+//				strColumn = scanner.nextLine();
+//				if (isSingleDigit(strColumn)) {
+//					intColumn = Integer.parseInt(strColumn) - 1; // user input will be from 1-3 and we'll check from 0-2
+//					if (isInBounds(intColumn)) {
+//						break;
+//					}
+//				}
+//			} while (true);
+//			if (board[intRow][intColumn] == '.') {
+//				board[intRow][intColumn] = player.getSymbol();
+//				break;
+//			} else {
+//				System.out.println("The position is already taken");
+//			}
+//		} while (true);
+//
+//		printBoard();
+//	}
+	
+	
 	public void makeMove(Player player) {
-		int intRow;
-		String strRow;
-		int intColumn;
-		String strColumn;
-		do {
-			do {
-				System.out.print(player.getName() + " enter the row number: ");
-				strRow = scanner.nextLine();
-				if (isSingleDigit(strRow)) {
-					intRow = Integer.parseInt(strRow) - 1; // user input will be from 1-3 and we'll check from 0-2
-					if (isInBounds(intRow)) {
-						break;
-					}
-				}
-			} while (true);
-
-			do {
-				System.out.print(player.getName() + " enter the column number: ");
-				strColumn = scanner.nextLine();
-				if (isSingleDigit(strColumn)) {
-					intColumn = Integer.parseInt(strColumn) - 1; // user input will be from 1-3 and we'll check from 0-2
-					if (isInBounds(intColumn)) {
-						break;
-					}
-				}
-			} while (true);
-			if (board[intRow][intColumn] == '.') {
-				board[intRow][intColumn] = player.getSymbol();
-				break;
-			} else {
-				System.out.println("The position is already taken");
-			}
-		} while (true);
-
+		System.out.println(player.getName() + " enter the coordinates you want to move");
+		String userInput = scanner.nextLine();
+		String[] coordinates = userInput.split(",");
+		
+		int row =Integer.parseInt(coordinates[0].trim())-1;
+		int column =Integer.parseInt(coordinates[1].trim())-1;
+		
+		
+		
+		if (board[row][column] == '.') {
+			board[row][column] = player.getSymbol();
+		} else {
+			System.out.println("The position is already taken");
+		}
+		
 		printBoard();
 	}
 	
-	
-//	public void makeMove(Player player) {
-//		System.out.println(player.getName() + " enter the coordinates you want to move");
-//		String userInput = scanner.nextLine();
-//		String[] coordinates = userInput.split(",");
-//		
-//		int row =Integer.parseInt(coordinates[0].trim())-1;
-//		int column =Integer.parseInt(coordinates[1].trim())-1;
-//		
-//		if (board[row][column] == '.') {
-//			board[row][column] = player.getSymbol();
-//		} else {
-//			System.out.println("The position is already taken");
-//		}
-//		
-//		printBoard();
-//	}
+	public void makeAIMove(Player aiPlayer) {
+	    Random random = new Random();
+	    int row, column;
+	    do {
+	        row = random.nextInt(3);
+	        column = random.nextInt(3);
+	    } while (board[row][column] != '.'); // Choose an empty spot
+
+	    board[row][column] = aiPlayer.getSymbol();
+	    System.out.println("AI placed at " + (row + 1) + "," + (column + 1));
+	    printBoard();
+	}
+
 
 	
 	public boolean isSingleDigit(String input) {
