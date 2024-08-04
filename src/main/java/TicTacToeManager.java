@@ -10,6 +10,7 @@ public class TicTacToeManager {
 	public void start() {
 
 		pickMenuOption();
+		createBoard();
 		playerOne = createPlayer(1);
 		playerAI = createPlayer(2);
 
