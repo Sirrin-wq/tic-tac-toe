@@ -1,8 +1,9 @@
 public class Main {
     public static void main(String[] args) {
         TicTacToeManager ticTacToeManager = new TicTacToeManager();
-        ticTacToeManager.createBoard();
+        //ticTacToeManager.createBoard();
         ticTacToeManager.printBoard();
+        ticTacToeManager.start();
     }
 }
 
